@@ -69,10 +69,10 @@ public class LevelServiceImpl implements LevelService {
                         : 0);
 
         var childOptional = levelRepository.findByIdAndDeletedIsFalse(
-                        entity.getChild().stream()
-                                .findFirst()
-                                .orElseThrow(() -> new IllegalArgumentException("Уровня с таким ID не существует!"))
-                                .getId());
+                entity.getChild().stream()
+                        .findFirst()
+                        .orElseThrow(() -> new IllegalArgumentException("Уровня с таким ID не существует!"))
+                        .getId());
 
         if (parentOptional.isPresent() && childOptional.isPresent()) {
             var child = childOptional.get();
@@ -92,5 +92,10 @@ public class LevelServiceImpl implements LevelService {
 
         entity.setDeleted(true);
         levelRepository.save(entity);
+    }
+
+    @Override
+    public LevelDto structure(int id) {
+        return null;
     }
 }

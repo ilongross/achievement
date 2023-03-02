@@ -25,5 +25,16 @@ spring:
     driver-class-name: org.postgresql.Driver
 logging.level.ru.iteco.fmh: debug
 
+bot:
+  name: achivki_wow_bot
+  token: 5907103226:AAGO_Oy2tEjmDyVi0s6lLAFq2tsjQL3TPOo
+  commands:
+    command1: level
+    command2: create_level
+    command3: update_level
+    command4: delete_level
+    command5: level_tree
+
+
 #swagger:
 #  host: ${SWAGGER_HOST}

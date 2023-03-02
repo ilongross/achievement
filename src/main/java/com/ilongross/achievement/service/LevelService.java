@@ -15,4 +15,6 @@ public interface LevelService {
     LevelDto update(int id, LevelDto levelDto);
 
     void delete(int id);
+
+    LevelDto structure(int id);
 }
