@@ -1,21 +1,19 @@
 package com.ilongross.achievement.telegram.command;
 
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
 import java.util.stream.Collectors;
 
 @Component
-@RequiredArgsConstructor
+@Getter
+@Setter
+@ConfigurationProperties(prefix = "bot")
 public class CommandRegister {
 
-    @Value("${bot.commands}")
     private Map<String, String> commands;
 
     public Map<String, BotCommand> map() {
@@ -27,11 +25,11 @@ public class CommandRegister {
     }
 
     public boolean isCommand(String command) {
-        return commands.containsKey(command);
+        return command.startsWith("/") && commands.containsKey(command.replaceFirst("/", ""));
     }
 
     public BotCommand get(String command) {
-        return map().get(command);
+        return map().get(command.replaceFirst("/", ""));
     }
 
 }
