@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -68,11 +69,11 @@ public class LevelServiceImpl implements LevelService {
                         ? entity.getParentId()
                         : 0);
 
+        var childList = entity.getChild();
         var childOptional = levelRepository.findByIdAndDeletedIsFalse(
-                entity.getChild().stream()
-                        .findFirst()
-                        .orElseThrow(() -> new IllegalArgumentException("Уровня с таким ID не существует!"))
-                        .getId());
+                CollectionUtils.isEmpty(childList)
+                        ? 0
+                        : entity.getChild().get(0).getId());
 
         if (parentOptional.isPresent() && childOptional.isPresent()) {
             var child = childOptional.get();

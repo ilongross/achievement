@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 public class LevelBotService {
 
     private final LevelService levelService;
+    private final IndexService indexService;
+    private final CounterService counterService;
 
-    public String result(String input, BotCommand botCommand) {
+    public String resultByCommand(String input, BotCommand botCommand) {
         return switch (botCommand.command()) {
             case "command1" -> get(input);
             case "command2" -> create();
@@ -19,6 +21,10 @@ public class LevelBotService {
             case "command5" -> structure();
             default -> "empty";
         };
+    }
+
+    public String resultById(String input) {
+        return get(input);
     }
 
     private String structure() {
@@ -40,8 +46,12 @@ public class LevelBotService {
 
     private String get(String incomingMessage) {
         var levelDto = levelService.get(Integer.parseInt(incomingMessage));
+        var index = indexService.defineIndex(levelDto);
+        var structureSize = counterService.structureSize(levelDto);
 
-        return String.format("Уровень:\nИмя - %s\nНабрано баллов - %s\nНужно баллов для перехода - %s",
+        return String.format("Уровень: %d из %d\nНазвание - %s\nБаллы - %d\nДо следующего - %d",
+                index,
+                structureSize,
                 levelDto.getName(),
                 levelDto.getScoredPoints(),
                 levelDto.getJumpPoints());
