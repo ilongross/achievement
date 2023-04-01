@@ -35,6 +35,3 @@ bot:
     command4: delete_level
     command5: level_tree
 
-
-#swagger:
-#  host: ${SWAGGER_HOST}
