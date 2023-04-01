@@ -1,9 +1,11 @@
 package com.ilongross.achievement.controller;
 
 import com.ilongross.achievement.dto.PlayerStatisticsDto;
+import com.ilongross.achievement.dto.PlayerSummaryStatisticsDto;
 import com.ilongross.achievement.service.StatisticsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,6 +21,11 @@ public class StatisticsController {
     @GetMapping("/summary")
     public List<PlayerStatisticsDto> getSummary() {
         return statisticsService.getSummary();
+    }
+
+    @GetMapping("/{id}")
+    public PlayerSummaryStatisticsDto getPlayerSummaryStatistics(@PathVariable Long id) {
+        return statisticsService.getPlayerSummaryStatistics(id);
     }
 
 }
