@@ -4,10 +4,7 @@ import com.ilongross.achievement.dto.PlayerStatisticsDto;
 import com.ilongross.achievement.dto.PlayerSummaryStatisticsDto;
 import com.ilongross.achievement.service.StatisticsService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,11 +15,13 @@ public class StatisticsController {
 
     private final StatisticsService statisticsService;
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/summary")
     public List<PlayerStatisticsDto> getSummary() {
         return statisticsService.getSummary();
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/{id}")
     public PlayerSummaryStatisticsDto getPlayerSummaryStatistics(@PathVariable Long id) {
         return statisticsService.getPlayerSummaryStatistics(id);
