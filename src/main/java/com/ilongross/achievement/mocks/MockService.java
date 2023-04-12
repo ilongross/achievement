@@ -51,7 +51,7 @@ public class MockService {
 
         playerStatisticsMap.keySet().forEach(id -> {
             var rand = new Random();
-            for(int i = 0; i <= rand.nextInt(20); i++) {
+            for (int i = 0; i <= rand.nextInt(20); i++) {
                 var game = new GameStatistics();
                 game.setPlayerId(id);
                 game.setGameSetup(new GameSetupDto());
@@ -67,11 +67,14 @@ public class MockService {
     public List<PlayerStatisticsDto> getSummaryStatistics() {
         return playerStatisticsMap.values()
                 .stream()
+                .sorted(Comparator
+                        .comparing(PlayerStatisticsDto::getRate)
+                        .reversed())
                 .toList();
     }
 
     public PlayerSummaryStatisticsDto getPlayerSummaryStatistics(Long id) {
-        if(playerStatisticsMap.containsKey(id)) {
+        if (playerStatisticsMap.containsKey(id)) {
             var summaryStat = new PlayerSummaryStatisticsDto();
             summaryStat.setPlayerStatistics(playerStatisticsMap.get(id));
             summaryStat.setGameStatistics(playerGameStatisticsMap.get(id));
