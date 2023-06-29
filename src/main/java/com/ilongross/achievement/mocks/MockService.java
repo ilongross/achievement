@@ -15,11 +15,19 @@ public class MockService {
 
     {
         var achievementNames = List.of(
-                "Лучший бомбардир сезона - 800 голов",
-                "Победитель сезона - 3 квартал 2023",
-                "Рекордный рейтинг в сезоне - 1923",
-                "Длиннейшая серия побед - 32",
-                "Весь сезон на 1-ом месте - 4 квартал 2022");
+                "Лучший бомбардир сезона",
+                "Победитель сезона",
+                "Рекордный рейтинг в сезоне",
+                "Длиннейшая серия побед",
+                "Весь сезон на 1-ом месте");
+
+        var achievementDescriptions = List.of(
+                "800 голов",
+                "3 квартал 2023",
+                "1923",
+                "32",
+                "4 квартал 2022");
+
         var playerNames = List.of(
                 "Андрей",
                 "Илья",
@@ -35,7 +43,9 @@ public class MockService {
             playerStat.setRate(rand.nextInt(2000));
 
             var achievement = new AchievementDto();
-            achievement.setName(achievementNames.get(rand.nextInt(4)));
+            var index = rand.nextInt(4);
+            achievement.setName(achievementNames.get(index));
+            achievement.setDescription(achievementDescriptions.get(index));
             playerStat.setAchievements(List.of(achievement));
 
             statList.add(playerStat);

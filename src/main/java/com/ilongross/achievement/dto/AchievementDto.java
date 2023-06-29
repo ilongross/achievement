@@ -10,5 +10,6 @@ import java.io.Serializable;
 public class AchievementDto implements Serializable {
 
     private String name;
+    private String description;
 
 }
