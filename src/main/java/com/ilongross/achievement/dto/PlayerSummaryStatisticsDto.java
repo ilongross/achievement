@@ -11,6 +11,6 @@ import java.util.List;
 public class PlayerSummaryStatisticsDto implements Serializable {
 
     private PlayerStatisticsDto playerStatistics;
-    private List<GameStatistics> gameStatistics;
+    private List<GameResult> gameStatistics;
 
 }

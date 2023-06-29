@@ -8,11 +8,12 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class GameStatistics implements Serializable {
+public class GameResult implements Serializable {
 
     private Long playerId;
-    private GameSetupDto gameSetup;
-    private boolean isWinning;
+    private boolean win;
+    private int scoreFirst;
+    private int scoreSecond;
     private LocalDateTime finished;
 
 }

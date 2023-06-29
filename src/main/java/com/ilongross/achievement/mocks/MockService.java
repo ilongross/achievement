@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class MockService {
 
     private static Map<Long, PlayerStatisticsDto> playerStatisticsMap = new HashMap<>();
-    private static Map<Long, List<GameStatistics>> playerGameStatisticsMap = new HashMap<>();
+    private static final Map<Long, List<GameResult>> gameResultsMap = new HashMap<>();
 
     {
         var achievementNames = List.of(
@@ -57,20 +57,22 @@ public class MockService {
                         PlayerStatisticsDto::getId,
                         stat -> stat));
 
-        var gamesList = new ArrayList<GameStatistics>();
+        var gamesList = new ArrayList<GameResult>();
 
         playerStatisticsMap.keySet().forEach(id -> {
             var rand = new Random();
             for (int i = 0; i <= rand.nextInt(20); i++) {
-                var game = new GameStatistics();
+                var game = new GameResult();
                 game.setPlayerId(id);
-                game.setGameSetup(new GameSetupDto());
-                game.setWinning(rand.nextBoolean());
+                game.setWin(rand.nextBoolean());
+                game.setScoreFirst(rand.nextInt(8));
+                game.setScoreSecond(rand.nextInt(8));
                 game.setFinished(LocalDateTime.now());
+
                 gamesList.add(game);
             }
 
-            playerGameStatisticsMap.put(id, gamesList);
+            gameResultsMap.put(id, gamesList);
         });
     }
 
@@ -87,7 +89,7 @@ public class MockService {
         if (playerStatisticsMap.containsKey(id)) {
             var summaryStat = new PlayerSummaryStatisticsDto();
             summaryStat.setPlayerStatistics(playerStatisticsMap.get(id));
-            summaryStat.setGameStatistics(playerGameStatisticsMap.get(id));
+            summaryStat.setGameStatistics(gameResultsMap.get(id));
 
             return summaryStat;
         }
