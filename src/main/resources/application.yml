@@ -4,25 +4,25 @@ server:
     context-path: /achivki
 
 spring:
-  datasource:
-    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:achievement}
-    username: ${DB_USER:postgres}
-    password: ${DB_PASS:1357}
-    driverClassName: org.postgresql.Driver
-  jpa:
-    open-in-view: false
-    show-sql: false
-    properties:
-      hibernate:
-        jdbc:
-          lob.non_contextual_creation: true
-        format_sql: true
-  flyway:
-    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:achievement}
-    user: ${DB_USER:postgres}
-    password: ${DB_PASS:1357}
-    driver-class-name: org.postgresql.Driver
-logging.level.ru.iteco.fmh: debug
+#  datasource:
+#    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:achievement}
+#    username: ${DB_USER:postgres}
+#    password: ${DB_PASS:1357}
+#    driverClassName: org.postgresql.Driver
+#  jpa:
+#    open-in-view: false
+#    show-sql: false
+#    properties:
+#      hibernate:
+#        jdbc:
+#          lob.non_contextual_creation: true
+#        format_sql: true
+#  flyway:
+#    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:achievement}
+#    user: ${DB_USER:postgres}
+#    password: ${DB_PASS:1357}
+#    driver-class-name: org.postgresql.Driver
+#logging.level.ru.iteco.fmh: debug
 
 bot:
   name: achivki_wow_bot

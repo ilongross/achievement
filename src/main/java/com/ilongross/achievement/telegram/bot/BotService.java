@@ -38,11 +38,11 @@ public class BotService extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
         var incomingMessage = update.getMessage().getText();
 
-//        var resultText = levelBotService.resultById(incomingMessage);
+        var resultText = levelBotService.resultById(incomingMessage);
 
         var message = new SendMessage();
         message.setChatId(update.getMessage().getChatId());
-//        message.setText(resultText);
+        message.setText(resultText);
 
         execute(message);
     }
