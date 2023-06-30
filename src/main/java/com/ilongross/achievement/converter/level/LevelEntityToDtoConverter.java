@@ -16,19 +16,19 @@ public class LevelEntityToDtoConverter implements Converter<LevelEntity, LevelDt
     @Override
     public LevelDto convert(LevelEntity entity) {
         var dto = new LevelDto();
-        dto.setId(entity.getId());
-        dto.setParentId(entity.getParentId());
+//        dto.setId(entity.getId());
+//        dto.setParentId(entity.getParentId());
         dto.setChild(new ArrayList<>());
 
-        var child = entity.getChild();
-        if (Objects.nonNull(child)) {
-            dto.setChild(child.stream()
-                    .map(this::convert)
-                    .collect(Collectors.toList()));
-        }
+//        var child = entity.getChild();
+//        if (Objects.nonNull(child)) {
+//            dto.setChild(child.stream()
+//                    .map(this::convert)
+//                    .collect(Collectors.toList()));
+//        }
 
-        BeanUtils.copyProperties(entity, dto);
+//        BeanUtils.copyProperties(entity, dto);
 
-        return dto;
+        return new LevelDto();
     }
 }
