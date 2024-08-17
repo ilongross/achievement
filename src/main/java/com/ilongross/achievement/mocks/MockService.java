@@ -1,6 +1,7 @@
 package com.ilongross.achievement.mocks;
 
 import com.ilongross.achievement.dto.*;
+import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -11,9 +12,10 @@ import java.util.stream.Collectors;
 public class MockService {
 
     private static Map<Long, PlayerStatisticsDto> playerStatisticsMap = new HashMap<>();
-    private static final Map<Long, List<GameResult>> gameResultsMap = new HashMap<>();
+    private static final Map<Long, List<GameResultDto>> gameResultsMap = new HashMap<>();
 
-    {
+    @PostConstruct
+    public void init() {
         var achievementNames = List.of(
                 "Лучший бомбардир сезона",
                 "Победитель сезона",
@@ -57,12 +59,12 @@ public class MockService {
                         PlayerStatisticsDto::getId,
                         stat -> stat));
 
-        var gamesList = new ArrayList<GameResult>();
+        var gamesList = new ArrayList<GameResultDto>();
 
         playerStatisticsMap.keySet().forEach(id -> {
             var rand = new Random();
             for (int i = 0; i <= rand.nextInt(20); i++) {
-                var game = new GameResult();
+                var game = new GameResultDto();
                 game.setPlayerId(id);
                 game.setWin(rand.nextBoolean());
                 game.setScoreFirst(rand.nextInt(8));
@@ -95,5 +97,9 @@ public class MockService {
         }
 
         return null;
+    }
+
+    public GameResultDto getGameResult(Long id) {
+        return new GameResultDto();
     }
 }

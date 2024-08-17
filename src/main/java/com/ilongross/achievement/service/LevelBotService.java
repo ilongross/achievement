@@ -1,6 +1,5 @@
 package com.ilongross.achievement.service;
 
-import com.ilongross.achievement.telegram.command.BotCommand;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,16 +11,16 @@ public class LevelBotService {
     private final IndexService indexService;
     private final CounterService counterService;
 
-    public String resultByCommand(String input, BotCommand botCommand) {
-        return switch (botCommand.command()) {
-            case "command1" -> get(input);
-            case "command2" -> create();
-            case "command3" -> update();
-            case "command4" -> delete();
-            case "command5" -> structure();
-            default -> "empty";
-        };
-    }
+//    public String resultByCommand(String input, BotCommand botCommand) {
+//        return switch (botCommand.command()) {
+//            case "command1" -> get(input);
+//            case "command2" -> create();
+//            case "command3" -> update();
+//            case "command4" -> delete();
+//            case "command5" -> structure();
+//            default -> "empty";
+//        };
+//    }
 
     public String resultById(String input) {
         return get(input);
